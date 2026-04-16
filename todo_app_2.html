@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App (DOM) - II</title>
+</head>
+
+<body>
+    <h1>Todo App</h1>
+    <input placeholder="Enter Task" />
+    <button>Add Task</button>
+
+    <ul>
+        <li>Sleep<button class="delete">Delete</button></li>
+        <li>Eat<button class="delete">Delete</button></li>
+    </ul>
+
+    <script>
+        let input = document.querySelector("input");
+        let btn = document.querySelector("button");
+        let ul = document.querySelector("ul");
+
+        btn.addEventListener("click", function () {
+            let li = document.createElement("li");
+            li.innerText = input.value;
+            ul.appendChild(li);
+
+            let button = document.createElement("button");
+            button.innerText = "Delete";
+            button.classList.add("delete");
+            li.appendChild(button);
+
+            input.value = "";
+        })
+
+        let dltBtns = document.querySelectorAll(".delete");
+
+        // for (dltBtn of dltBtns) {
+        //     dltBtn.addEventListener("click", function () {
+        //         let parent = this.parentElement;
+        //         parent.remove();
+        //     })
+        // }
+
+        ul.addEventListener("click", function (event) {
+            if (event.target.nodeName == "BUTTON") {
+                let parent = event.target.parentElement;
+                parent.remove();
+            }
+        })
+    </script>
+</body>
+
+</html>

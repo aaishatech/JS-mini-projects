@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image API</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.8.4/axios.min.js"
+        integrity="sha512-2A1+/TAny5loNGk3RBbk11FwoKXYOMfAK6R7r4CpQH7Luz4pezqEGcfphoNzB7SM4dixUoJsKkBsB6kg+dNE2g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style rel="stylesheet">
+        body {
+            text-align: center;
+        }
+
+        button {
+            border: 2px solid cadetblue;
+            color: transparent;
+            border-radius: 0.7rem;
+            padding: 1rem;
+            color: black;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: aquamarine;
+            transition: all 0.2s linear 0.2s;
+        }
+
+        img {
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Random Image API</h1>
+    <button>Random Image</button>
+    <p>Random Image will Shown here-</p>
+    <div class="container">
+        <img src="" alt="">
+    </div>
+    <script>
+        let url = "https://dog.ceo/api/breeds/image/random";
+
+        let btn = document.querySelector("button");
+
+        async function images() {
+            try {
+                let store = await axios.get(url);
+                return store.data.message;
+            }
+            catch (e) {
+                console.log("error", e);
+            }
+        }
+
+        btn.addEventListener("click", async () => {
+            let link = await images();
+            let img = document.querySelector("img");
+            img.setAttribute("src", link);
+            console.log(link);
+        })
+    </script>
+</body>
+
+</html>

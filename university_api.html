@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University API</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.8.4/axios.js"
+        integrity="sha512-GZ3tCTg/fmuBbcc3NlFeEjz2Uozw2dH39ePntzLUPMT+Y+6yvH6U2SY7SoLhFRlebuPWmwd+mafASkalUSNGoA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <h1>University Search</h1>
+    <input placeholder="Enter Country" />
+    <button>Enter</button>
+
+    <ol></ol>
+
+    <script>
+        let input = document.querySelector("input");
+        let btn = document.querySelector("button");
+        let ol = document.querySelector("ol");
+
+        let url = "http://universities.hipolabs.com/search?name=";
+
+        btn.addEventListener("click", async function () {
+            let country = input.value;
+            input.value = "";
+
+            let collArr = await getColleges(country);
+            show(collArr);
+        })
+
+        async function getColleges(country) {
+            try {
+                let store = await axios.get(url + country);
+                return store.data;
+            } catch (e) {
+                console.log("error", e);
+            }
+        }
+
+        async function show(collArr) {
+            ol.innerText = "";
+            for (col of collArr) {
+                console.log(col.name);
+
+                let li = document.createElement("li");
+                li.innerText = col.name;
+                ol.appendChild(li);
+            }
+        }
+    </script>
+</body>
+
+</html>

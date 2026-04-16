@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App (Only JS)</title>
+</head>
+
+<body>
+    <h1>Open Console Window for Todo</h1>
+    <script>
+        let todo = [];
+        let request = prompt("Enter Request : Add, List, Delete $ Quit");
+        while (true) {
+            if (request == "quit") {
+                console.log("You Quit");
+                break;
+            }
+            else if (request == "add") {
+                let task = prompt("Add Task: ");
+                todo.push(task);
+                console.log("Task added.");
+            }
+            else if (request == "list") {
+                console.log("----------------");
+                for (let i = 0; i < todo.length; i++) {
+                    console.log(i, todo[i]);
+                }
+                console.log("----------------");
+            }
+            else if (request == "delete") {
+                let index = prompt("Enter Index for delete: ");
+                todo.splice(index, 1);
+                console.log("Task Deleted.");
+            }
+            else {
+                console.log("Wrong Request");
+            }
+            request = prompt("Enter request again: Add, List, Delete $ Quit");
+        }
+    </script>
+</body>
+
+</html>
